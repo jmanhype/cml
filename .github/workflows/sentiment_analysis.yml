@@ -25,3 +25,13 @@ jobs:
       - name: Run sentiment analysis
         run: |
           python sentiment_analysis.py
+
+      - name: Setup CML
+        uses: iterative/setup-cml@v2
+        with:
+          version: latest
+          vega: true
+
+      - name: Run CML
+        run: |
+          cml run
