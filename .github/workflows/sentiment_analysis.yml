@@ -1,9 +1,10 @@
-name: Sentiment Analysis
-
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
+
+name: Sentiment Analysis
 
 jobs:
   build:
@@ -15,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: "3.8"
 
       - name: Install dependencies
         run: |
@@ -34,4 +35,4 @@ jobs:
 
       - name: Run CML
         run: |
-          cml run --partition=cml-dpart --qos=cml-medium --account=cml-tomg --gres=gpu:rtx2080ti:2
+          cml run --token ${{ secrets.GITHUB_TOKEN }} --partition=cml-dpart --qos=cml-medium --account=cml-tomg --gres=gpu:rtx2080ti:2
