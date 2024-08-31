@@ -1,5 +1,4 @@
-
-name: Sentiment Analysis Workflow
+name: Sentiment Analysis
 
 on:
   push:
@@ -7,11 +6,10 @@ on:
       - main
 
 jobs:
-  sentiment_analysis:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
         uses: actions/checkout@v2
 
       - name: Set up Python
@@ -21,19 +19,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install datasets transformers
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run sentiment analysis
         run: |
-          from datasets import load_dataset
-          from transformers import pipeline
-
-          # Load the IMDb dataset
-          dataset = load_dataset('imdb')
-
-          # Initialize the sentiment-analysis pipeline
-          classifier = pipeline('sentiment-analysis')
-
-          # Analyze the first example
-          result = classifier(dataset['test'][0]['text'])
-          print(result)
+          python sentiment_analysis.py
