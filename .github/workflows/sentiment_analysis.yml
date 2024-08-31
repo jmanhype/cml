@@ -34,4 +34,4 @@ jobs:
 
       - name: Run CML
         run: |
-          cml run
+          cml run --partition=cml-dpart --qos=cml-medium --account=cml-tomg --gres=gpu:rtx2080ti:2
