@@ -6,5 +6,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Setup CML
+        uses: iterative/setup-cml@v2
       - name: Run CML
         run: cml run
